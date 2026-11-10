@@ -29,7 +29,7 @@ func NewLogger(verbose bool, writeToFile bool) (*Logger, error) {
 	var logFile *os.File
 
 	if writeToFile {
-		logPath := filepath.Join(os.TempDir(), "netops", "netops.log")
+		logPath := filepath.Join(os.TempDir(), "netops", "netops-agent.log")
 		logDir := filepath.Dir(logPath)
 		if err := os.MkdirAll(logDir, 0755); err != nil {
 			return nil, fmt.Errorf("erreur lors de la creation du repertoire %s: %w", logDir, err)
