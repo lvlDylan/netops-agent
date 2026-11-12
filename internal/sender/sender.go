@@ -29,7 +29,7 @@ func (s *Sender) SendHeartbeat(payload *collector.Payload) error {
 		return fmt.Errorf("échec de la sérialisation JSON: %w", err)
 	}
 
-	endpoint := fmt.Sprintf("%s/api/heartbeat", s.apiURL)
+	endpoint := fmt.Sprintf("%s/api/report", s.apiURL)
 	req, err := http.NewRequest(http.MethodPost, endpoint, bytes.NewBuffer(jsonData))
 	if err != nil {
 		return fmt.Errorf("échec de la création de la requête HTTP: %w", err)
@@ -44,7 +44,7 @@ func (s *Sender) SendHeartbeat(payload *collector.Payload) error {
 		return fmt.Errorf("échec de l'envoie de la requête HTTP: %w", err)
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
+	if resp.StatusCode != http.StatusCreated && resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("l'api a renvoyé un statut d'erreur: %d", resp.StatusCode)
 	}
 

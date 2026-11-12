@@ -54,5 +54,5 @@ func runJob(deviceID string, s *sender.Sender, log *logging.Logger) {
 		return
 	}
 
-	log.Info("Heartbeat transmis avec succès à l'API. (CPU: %.2f%%, RAM: %.2ff)", payload.Metrics.CPU.UsagePercent, payload.Metrics.Memory.UsagePercent)
+	log.Info("report transmis avec succès à l'API. (CPU: %.2f%%, RAM: %.2f%%)", payload.Metrics.CPU.UsagePercent, payload.Metrics.Memory.UsagePercent)
 }
